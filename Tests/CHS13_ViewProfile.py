@@ -5,9 +5,8 @@ from selenium.webdriver.common.by import By
 from webdriver_manager.chrome import ChromeDriverManager
 from Pages.sidebar import Sidebar
 from Pages.loginPage import LoginPage
-from Pages.homePage import Homepage
 
-class FailedAddAppointment(unittest.TestCase):
+class ViewProfile(unittest.TestCase):
 
     @classmethod
     def setUp(cls):
@@ -15,7 +14,7 @@ class FailedAddAppointment(unittest.TestCase):
         cls.driver.implicitly_wait(3)
         cls.driver.maximize_window()
 
-    def test_not_input_visit_date(self):
+    def test_view_profile_page(self):
         driver = self.driver
         driver.get('https://katalon-demo-cura.herokuapp.com/')
 
@@ -27,17 +26,12 @@ class FailedAddAppointment(unittest.TestCase):
         loginPage.login_valid('John Doe', 'ThisIsNotAPassword')
         time.sleep(1)
 
-        homePage = Homepage(driver)
-        homePage.select_facility('Tokyo CURA Healthcare Center')
-        homePage.check_hospital_readmission()
-        homePage.select_program_medicare()
-        homePage.enter_comment('at 10.00 AM')
-        driver.find_element(By.ID, homePage.book_appointment_btn_id).click()
-        time.sleep(1)
+        sidebar = Sidebar(driver)
+        sidebar.click_menu()
+        sidebar.click_profile()
 
         # Validation
-        msg = driver.find_element(By.ID, homePage.visit_date_picker_id).get_attribute('validationMessage')
-        self.assertIn(msg, 'Please fill out this field.')
+        driver.find_element(By.XPATH, '//h2[(text = "Profile" or . = "Profile")]').is_displayed()
 
     @classmethod
     def tearDownClass(cls):

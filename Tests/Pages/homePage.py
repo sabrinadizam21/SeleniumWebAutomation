@@ -4,6 +4,7 @@ class Homepage():
     def __init__(self, driver):
         self.driver = driver
         self.make_appointment_section_id = 'appointment'
+        self.make_appointment_btn_id = 'btn-make-appointment'
         self.facility_dropdown_id = 'combo_facility' 
             # Tokyo CURA Healthcare Center
             # Hongkong CURA Healthcare Center

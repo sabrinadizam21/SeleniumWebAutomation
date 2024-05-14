@@ -10,6 +10,10 @@ class MainFunc():
         content = self.driver.find_element(By.ID, id).text
         return content
     
+    def getContentByXpath(self, xpath):
+        content = self.driver.find_element(By.XPATH, xpath).text
+        return content
+    
     def verifyElementNotDisplay(self, id):
         try:
             element = self.driver.find_element(By.ID, id)
