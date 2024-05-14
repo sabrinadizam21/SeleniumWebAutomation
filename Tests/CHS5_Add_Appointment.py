@@ -7,6 +7,7 @@ from Pages.sidebar import Sidebar
 from Pages.loginPage import LoginPage
 from Pages.homePage import Homepage
 from Function.main import MainFunc
+from Pages.historyPage import HistoryPage
 
 class AddAppointment(unittest.TestCase):
 
@@ -48,6 +49,14 @@ class AddAppointment(unittest.TestCase):
         self.assertIn(mainFunction.getContentByID('comment'), 'at 10.00 AM')
 
         # Validation display in history page
+        sidebar.click_menu()
+        sidebar.click_history()
+        historyPage = HistoryPage(driver)
+        self.assertIn(mainFunction.getContentByXpath(historyPage.visit_date_class), '01/05/2024')
+        self.assertIn(mainFunction.getContentByID(historyPage.facility_id), 'Tokyo CURA Healthcare Center')
+        self.assertIn(mainFunction.getContentByID(historyPage.hospital_readmission_id), 'Yes')
+        self.assertIn(mainFunction.getContentByID(historyPage.program_id), 'Medicare')
+        self.assertIn(mainFunction.getContentByID(historyPage.comment_id), 'at 10.00 AM')
         
     @classmethod
     def tearDownClass(cls):
