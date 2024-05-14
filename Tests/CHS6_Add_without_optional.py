@@ -7,6 +7,7 @@ from Pages.sidebar import Sidebar
 from Pages.loginPage import LoginPage
 from Pages.homePage import Homepage
 from Function.main import MainFunc
+from Pages.historyPage import HistoryPage
 
 class AddWithoutOptional(unittest.TestCase):
 
@@ -46,6 +47,14 @@ class AddWithoutOptional(unittest.TestCase):
         self.assertIn(mainFunction.verifyElementNotDisplay('comment'), 'not exist')
 
         # Validation display in history page
+        sidebar.click_menu()
+        sidebar.click_history()
+        historyPage = HistoryPage(driver)
+        self.assertIn(mainFunction.getContentByXpath(historyPage.visit_date_class), '10/05/2024')
+        self.assertIn(mainFunction.getContentByID(historyPage.facility_id), 'Hongkong CURA Healthcare Center')
+        self.assertIn(mainFunction.getContentByID(historyPage.hospital_readmission_id), 'No')
+        self.assertIn(mainFunction.getContentByID(historyPage.program_id), 'Medicaid')
+        self.assertIn(mainFunction.verifyElementNotDisplay(historyPage.comment_id), 'not exist')
 
     @classmethod
     def tearDownClass(cls):
