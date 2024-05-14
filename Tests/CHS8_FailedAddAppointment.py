@@ -6,7 +6,6 @@ from webdriver_manager.chrome import ChromeDriverManager
 from Pages.sidebar import Sidebar
 from Pages.loginPage import LoginPage
 from Pages.homePage import Homepage
-from Function.main import MainFunc
 
 class FailedAddAppointment(unittest.TestCase):
 
