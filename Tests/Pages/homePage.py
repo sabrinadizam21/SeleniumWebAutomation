@@ -1,22 +1,23 @@
 from selenium.webdriver.common.by import By
+from Locators.locators import Locators
 
 class Homepage():
     def __init__(self, driver):
         self.driver = driver
-        self.make_appointment_section_id = 'appointment'
-        self.make_appointment_btn_id = 'btn-make-appointment'
-        self.facility_dropdown_id = 'combo_facility' 
+        self.make_appointment_section_id = Locators.make_appointment_section_id
+        self.make_appointment_btn_id = Locators.make_appointment_btn_id
+        self.facility_dropdown_id = Locators.facility_dropdown_id
             # Tokyo CURA Healthcare Center
             # Hongkong CURA Healthcare Center
             # Seoul CURA Healthcare Center
-        self.hospital_readmission_checkbox_id = 'chk_hospotal_readmission'
-        self.program_medicare_checkbox_id = 'radio_program_medicare'
-        self.program_medicaid_checkbox_id = 'radio_program_medicaid'
-        self.program_none_checkbox_id = 'radio_program_none'
-        self.visit_date_picker_id = 'txt_visit_date'
-        self.comment_textarea_id = 'txt_comment'
-        self.book_appointment_btn_id = 'btn-book-appointment'
-        self.go_to_homepage_btn_xpath = '//a[@href="https://katalon-demo-cura.herokuapp.com/" and (text() = "Go to Homepage" or . = "Go to Homepage")]'
+        self.hospital_readmission_checkbox_id = Locators.hospital_readmission_checkbox_id
+        self.program_medicare_checkbox_id = Locators.program_medicare_checkbox_id
+        self.program_medicaid_checkbox_id = Locators.program_medicaid_checkbox_id
+        self.program_none_checkbox_id = Locators.program_none_checkbox_id
+        self.visit_date_picker_id = Locators.visit_date_picker_id
+        self.comment_textarea_id = Locators.comment_textarea_id
+        self.book_appointment_btn_id = Locators.book_appointment_btn_id
+        self.go_to_homepage_btn_xpath = Locators.go_to_homepage_btn_xpath
 
     def select_facility(self, facility):
         self.driver.find_element(By.ID, self.facility_dropdown_id).send_keys(facility)

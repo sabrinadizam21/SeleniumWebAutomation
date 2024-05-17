@@ -1,14 +1,15 @@
 from selenium.webdriver.common.by import By
+from Locators.locators import Locators
 
 class Sidebar():
     def __init__(self, driver):
         self.driver = driver
-        self.menu_button_id = 'menu-toggle'
-        self.home_menu_xpath = '//a[@href = "./" and (text() = "Home" or . = "Home")]'
-        self.login_menu_xpath = '//a[@href = "profile.php#login" and (text() = "Login" or . = "Login")]'
-        self.logout_menu_xpath = '//a[@href = "authenticate.php?logout" and (text() = "Logout" or . = "Logout")]'
-        self.history_menu_xpath = '//a[@href = "history.php#history" and (text() = "History" or . = "History")]'
-        self.profile_menu_xpath = '//a[@href = "profile.php#profile" and (text() = "Profile" or . = "Profile")]'
+        self.menu_button_id = Locators.menu_button_id
+        self.home_menu_xpath = Locators.home_menu_xpath
+        self.login_menu_xpath = Locators.login_menu_xpath
+        self.logout_menu_xpath = Locators.logout_menu_xpath
+        self.history_menu_xpath = Locators.history_menu_xpath
+        self.profile_menu_xpath = Locators.profile_menu_xpath
     
     def click_menu(self):
         self.driver.find_element(By.ID, self.menu_button_id).click()
