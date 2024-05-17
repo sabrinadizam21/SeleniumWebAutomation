@@ -4,7 +4,7 @@ from selenium import webdriver
 from selenium.webdriver.common.by import By
 from webdriver_manager.chrome import ChromeDriverManager
 from Pages.sidebar import Sidebar
-from Pages.loginPage import LoginPage
+from Function.main import MainFunc
 from Pages.historyPage import HistoryPage
 
 class EmptyHistory(unittest.TestCase):
@@ -19,14 +19,11 @@ class EmptyHistory(unittest.TestCase):
         driver = self.driver
         driver.get('https://katalon-demo-cura.herokuapp.com/')
 
-        sidebar = Sidebar(driver)
-        sidebar.click_menu()
-        sidebar.click_login()
-
-        loginPage = LoginPage(driver)
-        loginPage.login_valid('John Doe', 'ThisIsNotAPassword')
+        mainFunction = MainFunc(driver)
+        mainFunction.login('John Doe', 'ThisIsNotAPassword')
         time.sleep(1)
 
+        sidebar = Sidebar(driver)
         sidebar.click_menu()
         sidebar.click_history()
 

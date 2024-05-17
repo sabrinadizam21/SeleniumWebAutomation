@@ -4,7 +4,6 @@ from selenium import webdriver
 from selenium.webdriver.common.by import By
 from webdriver_manager.chrome import ChromeDriverManager
 from Pages.sidebar import Sidebar
-from Pages.loginPage import LoginPage
 from Pages.homePage import Homepage
 from Function.main import MainFunc
 from Pages.historyPage import HistoryPage
@@ -20,13 +19,9 @@ class AddWithoutOptional(unittest.TestCase):
     def test_without_optional_form(self):
         driver = self.driver
         driver.get('https://katalon-demo-cura.herokuapp.com/')
-
-        sidebar = Sidebar(driver)
-        sidebar.click_menu()
-        sidebar.click_login()
-
-        loginPage = LoginPage(driver)
-        loginPage.login_valid('John Doe', 'ThisIsNotAPassword')
+        
+        mainFunction = MainFunc(driver)
+        mainFunction.login('John Doe', 'ThisIsNotAPassword')
         time.sleep(1)
 
         homePage = Homepage(driver)
@@ -39,7 +34,6 @@ class AddWithoutOptional(unittest.TestCase):
         # Validation
         driver.find_element(By.ID, 'summary').is_displayed()
 
-        mainFunction = MainFunc(driver)
         self.assertIn(mainFunction.getContentByID('facility'), 'Hongkong CURA Healthcare Center')
         self.assertIn(mainFunction.getContentByID('hospital_readmission'), 'No')
         self.assertIn(mainFunction.getContentByID('program'), 'Medicaid')
@@ -47,6 +41,7 @@ class AddWithoutOptional(unittest.TestCase):
         self.assertIn(mainFunction.verifyElementNotDisplay('comment'), 'not exist')
 
         # Validation display in history page
+        sidebar = Sidebar(driver)
         sidebar.click_menu()
         sidebar.click_history()
         historyPage = HistoryPage(driver)
