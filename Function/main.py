@@ -1,7 +1,10 @@
 from selenium.webdriver.common.by import By
 from selenium.common.exceptions import NoSuchElementException 
-from Pages.loginPage import LoginPage
-from Pages.sidebar import Sidebar
+import sys
+import os
+sys.path.append(os.path.join(os.path.dirname(__file__), "..", ".."))
+from SeleniumWebAutomation.Pages.loginPage import LoginPage
+from SeleniumWebAutomation.Pages.sidebar import Sidebar
 
 class MainFunc():
     
