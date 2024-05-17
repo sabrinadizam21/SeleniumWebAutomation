@@ -1,4 +1,7 @@
-from Locators.locators import Locators
+import sys
+import os
+sys.path.append(os.path.join(os.path.dirname(__file__), "..", ".."))
+from SeleniumWebAutomation.Locators.locators import Locators
 
 class HistoryPage():
 

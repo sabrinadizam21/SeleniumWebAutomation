@@ -3,8 +3,11 @@ import time
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from webdriver_manager.chrome import ChromeDriverManager
-from Pages.sidebar import Sidebar
-from Function.main import MainFunc
+import sys
+import os
+sys.path.append(os.path.join(os.path.dirname(__file__), "..", ".."))
+from SeleniumWebAutomation.Pages.sidebar import Sidebar
+from SeleniumWebAutomation.Function.main import MainFunc
 
 class ViewProfile(unittest.TestCase):
 
