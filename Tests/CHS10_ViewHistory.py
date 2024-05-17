@@ -4,7 +4,6 @@ from selenium import webdriver
 from selenium.webdriver.common.by import By
 from webdriver_manager.chrome import ChromeDriverManager
 from Pages.sidebar import Sidebar
-from Pages.loginPage import LoginPage
 from Pages.historyPage import HistoryPage
 from Pages.homePage import Homepage
 from Function.main import MainFunc
@@ -21,12 +20,8 @@ class ViewHistory(unittest.TestCase):
         driver = self.driver
         driver.get('https://katalon-demo-cura.herokuapp.com/')
 
-        sidebar = Sidebar(driver)
-        sidebar.click_menu()
-        sidebar.click_login()
-
-        loginPage = LoginPage(driver)
-        loginPage.login_valid('John Doe', 'ThisIsNotAPassword')
+        mainFunction = MainFunc(driver)
+        mainFunction.login('John Doe', 'ThisIsNotAPassword')
         time.sleep(1)
 
         homePage = Homepage(driver)
@@ -38,17 +33,17 @@ class ViewHistory(unittest.TestCase):
         driver.find_element(By.ID, homePage.book_appointment_btn_id).click()
         time.sleep(1)
 
+        sidebar = Sidebar(driver)
         sidebar.click_menu()
         sidebar.click_history()
 
         # Validation
         historyPage = HistoryPage(driver)
-        mainFunc = MainFunc(driver)
-        self.assertIn(mainFunc.getContentByXpath(historyPage.visit_date_class), '01/05/2024')
-        self.assertIn(mainFunc.getContentByID(historyPage.facility_id), 'Tokyo CURA Healthcare Center')
-        self.assertIn(mainFunc.getContentByID(historyPage.hospital_readmission_id), 'Yes')
-        self.assertIn(mainFunc.getContentByID(historyPage.program_id), 'Medicare')
-        self.assertIn(mainFunc.getContentByID(historyPage.comment_id), 'at 10.00 AM')
+        self.assertIn(mainFunction.getContentByXpath(historyPage.visit_date_class), '01/05/2024')
+        self.assertIn(mainFunction.getContentByID(historyPage.facility_id), 'Tokyo CURA Healthcare Center')
+        self.assertIn(mainFunction.getContentByID(historyPage.hospital_readmission_id), 'Yes')
+        self.assertIn(mainFunction.getContentByID(historyPage.program_id), 'Medicare')
+        self.assertIn(mainFunction.getContentByID(historyPage.comment_id), 'at 10.00 AM')
 
     @classmethod
     def tearDownClass(cls):

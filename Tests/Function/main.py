@@ -1,5 +1,7 @@
 from selenium.webdriver.common.by import By
 from selenium.common.exceptions import NoSuchElementException 
+from Pages.loginPage import LoginPage
+from Pages.sidebar import Sidebar
 
 class MainFunc():
     
@@ -20,3 +22,13 @@ class MainFunc():
             return 'exist'
         except NoSuchElementException:
             return 'not exist'
+        
+    def login(self, username, password):
+        sidebar = Sidebar(self.driver)
+        sidebar.click_menu()
+        sidebar.click_login()
+
+        loginPage = LoginPage(self.driver)
+        loginPage.enter_username(username)
+        loginPage.enter_password(password)
+        loginPage.submit_login()
