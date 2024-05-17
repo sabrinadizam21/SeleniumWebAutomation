@@ -30,7 +30,7 @@ class Login(unittest.TestCase):
         time.sleep(1)
 
         # Validation
-        homepage = Homepage()
+        homepage = Homepage(driver)
         self.driver.find_element(By.ID, homepage.make_appointment_section_id).is_displayed()
     
     @classmethod
