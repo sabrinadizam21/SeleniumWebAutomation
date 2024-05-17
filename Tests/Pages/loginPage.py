@@ -1,12 +1,13 @@
 from selenium.webdriver.common.by import By
+from Locators.locators import Locators
 
 class LoginPage():
     def __init__(self, driver):
         self.driver = driver
-        self.username_inputText_id = 'txt-username'
-        self.password_inputText_id = 'txt-password'
-        self.login_button_id = 'btn-login'
-        self.err_message_xpath = '//*[@class = "lead text-danger" and (text() = "Login failed! Please ensure the username and password are valid." or . = "Login failed! Please ensure the username and password are valid.")]'
+        self.username_inputText_id = Locators.username_inputText_id
+        self.password_inputText_id = Locators.password_inputText_id
+        self.login_button_id = Locators.login_button_id
+        self.err_message_xpath = Locators.err_message_xpath
 
     def enter_username(self, username):
         self.driver.find_element(By.ID, self.username_inputText_id).clear()
